@@ -1,0 +1,108 @@
+﻿@using GymChanger.Data;
+@using GymChanger.Models
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore;
+@inject UserManager<AppUser> UserManager
+@model IEnumerable<Course>
+@{
+    ViewData["Title"] = "Мои курсы";
+}
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="card card-margin">
+                    <div class="card-header no-border">
+                        <h5 class="card-title">@item.Title</h5>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <span class="widget-49-date-day">@item.DayStart</span>
+                                    <span class="widget-49-date-month">@item.MonthStart</span>
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    @{
+                                        var user = await UserManager.FindByIdAsync(item.TrainerId);
+                                    }
+                                    @if (user != null && !string.IsNullOrEmpty(user.Name) && !string.IsNullOrEmpty(user.Surname))
+                                    {
+                                        <span class="widget-49-pro-title">
+
+                                            т. @user.Name @user.Surname
+                                        </span>
+
+                                    }
+                                    else
+                                    {
+                                        <span class="widget-49-pro-title">
+                                            т. -
+                                        </span>
+                                    }
+
+                                    <span class="widget-49-meeting-time">@item.TimeStart до @item.TimeEnd ч.</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col" style="text-align:left">
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        @if (!User.IsInRole(UserRoles.Trainer))
+                                        {
+                                            var user1 = await UserManager.FindByNameAsync(User.Identity.Name);
+                                            var currentUser = await UserManager.Users.Include(u => u.Courses).FirstOrDefaultAsync(u => u.Id == user1.Id);
+
+                                            @if (currentUser != null)
+                                            {
+                                                @if (currentUser.Courses != null && currentUser.Courses.Contains(item))
+                                                {
+                                                    <form asp-controller="Course" asp-action="RemoveCourseFromUserRedirect" method="post">
+                                                        <input type="hidden" name="userId" value="@currentUser.Id" />
+                                                        <input type="hidden" name="courseId" value="@item.CourseId" />
+                                                        <button type="submit" class="btn success" style="color: green">Вы уже записаны</button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <form asp-controller="Course" asp-action="AssignCourseToUser" method="post">
+                                                        <input type="hidden" name="userId" value="@currentUser.Id" />
+                                                        <input type="hidden" name="courseId" value="@item.CourseId" />
+                                                        <button type="submit" class="btn info">Записаться на курс</button>
+                                                    </form>
+                                                }
+                                            }
+                                        }
+                                        var currentTrainer = await UserManager.FindByNameAsync(User.Identity.Name);
+                                        @if (currentTrainer != null)
+                                        {
+                                            @if (currentTrainer.Id == item.TrainerId)
+                                            {
+                                                <span class="nav-link" style="color:green">Вы тренер</span>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Account" asp-action="Login" class="btn warning">Войдите, чтобы записаться на курс</a>
+                                    }
+                                </div>
+                                @if (User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Trainer))
+                                {
+                                    <div class="col" style="text-align:right">
+                                        <a asp-controller="Course" asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                                        <a asp-controller="Course" asp-action="Group" asp-route-id="@item.CourseId" class="btn btn-sm btn-outline-secondary">Группа</a>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
