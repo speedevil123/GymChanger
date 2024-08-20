@@ -1,0 +1,214 @@
+﻿@{
+    ViewData["Title"] = "Цены";
+}
+<style>
+    body {
+    }
+    /* pricing tables */
+    .pricing-table {
+        background: #e9f0f4;
+        text-align: center;
+        margin: 15px 0;
+    }
+
+        .pricing-table ul, .pricing-table ol {
+            margin-bottom: 0;
+            padding-left: 0;
+        }
+
+    .pricing-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        padding: 30px;
+        margin-bottom: 0;
+    }
+
+    .pricing-table-price {
+        background: #cdd4d8;
+        font-weight: 700;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+        .pricing-table-price.w-rounded-price {
+            display: table;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px auto;
+            padding: 0;
+        }
+
+    .rounded-price {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+        .rounded-price .pricing-price {
+            font-size: 1.75rem;
+        }
+
+        .rounded-price .pricing-currency {
+            vertical-align: 10px;
+        }
+
+    .pricing-table-price p {
+        color: #000;
+        margin-bottom: 0;
+    }
+
+    .pricing-currency {
+        font-size: 1rem;
+        font-weight: 700;
+        vertical-align: 25px;
+    }
+
+    .pricing-price {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    .pricing-period {
+        font-weight: 700;
+    }
+
+    .pricing-table-content li {
+        margin-bottom: 15px;
+    }
+
+    .pricing-table-button {
+        padding: 15px 0 35px;
+    }
+
+    .featured.pricing-table {
+        background: #9c64b8;
+    }
+
+        .featured.pricing-table .pricing-title {
+            color: #fff;
+        }
+
+        .featured.pricing-table .pricing-table-content ul li {
+            color: #eee;
+        }
+
+        .featured.pricing-table .pricing-table-price {
+            background: #8853a1;
+        }
+
+            .featured.pricing-table .pricing-table-price p {
+                color: #fff;
+            }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .bg-info-hover {
+        background-color: #1397af !important;
+    }
+
+    .bg-info {
+        background-color: #21b9d5 !important;
+    }
+
+    .bg-primary-hover {
+        background-color: #8853a1 !important;
+    }
+
+    .bg-primary {
+        background-color: #9c64b8 !important;
+    }
+
+    .text-white {
+        color: #fff !important;
+    }
+</style>
+<section id="pricing" class="bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="pricing-table">
+                    <div class="pricing-table-title">
+                        <h5 class="pricing-title bg-info-hover text-white">Новичок</h5>
+                    </div>
+                    <div class="pricing-table-price text-center bg-info">
+                        <p class="title-font">
+                            <span class="pricing-period text-white mr-1">От</span>
+                            <span class="pricing-currency text-white">₽</span>
+                            <span class="pricing-price text-white">3499.99</span>
+                            <span class="pricing-period text-white">/ Мес.</span>
+                        </p>
+                    </div>
+                    <div class="pricing-table-content">
+                        <ul>
+                            <li><strong>12 Тренировок</strong></li>
+                            <li><strong>Безлимитное посещение</strong></li>
+                            <li><strong><del>Бассейн</del></strong></li>
+                            <li><strong><del>Солярий</del></strong></li>
+                            <li><strong>Круглосуточная поддержка</strong></li>
+                        </ul>
+                        <div class="pricing-table-button">
+                        </div><!-- / pricing-table-button -->
+                    </div><!-- / pricing-table-content -->
+                </div><!-- / pricing-table -->
+            </div><!-- / column -->
+
+            <div class="col-md-4">
+                <div class="pricing-table bg-lightgrey">
+                    <div class="pricing-table-title">
+                        <h5 class="pricing-title bg-primary-hover text-white">Любитель</h5>
+                    </div>
+                    <div class="pricing-table-price text-center bg-primary">
+                        <p class="title-font">
+                            <span class="pricing-period text-white mr-1">От</span>
+                            <span class="pricing-currency text-white">₽</span>
+                            <span class="pricing-price text-white">7500.00</span>
+                            <span class="pricing-period text-white">/ Мес.</span>
+                        </p>
+                    </div>
+                    <div class="pricing-table-content">
+                        <ul>
+                            <li><strong>18 Тренировок</strong></li>
+                            <li><strong>Безлимитное посещение</strong></li>
+                            <li><strong>Бассейн</strong></li>
+                            <li><strong><del>Солярий</del></strong></li>
+                            <li><strong>Круглосуточная поддержка</strong></li>
+                        </ul>
+                        <div class="pricing-table-button">
+                        </div><!-- / pricing-table-button -->
+                    </div><!-- / pricing-table-content -->
+                </div><!-- / pricing-table -->
+            </div><!-- / column -->
+
+            <div class="col-md-4">
+                <div class="pricing-table">
+                    <div class="pricing-table-title">
+                        <h5 class="pricing-title bg-info-hover text-white">Продвинутый</h5>
+                    </div>
+                    <div class="pricing-table-price text-center bg-info">
+                        <p class="title-font">
+                            <span class="pricing-period text-white mr-1">От</span>
+                            <span class="pricing-currency text-white">₽</span>
+                            <span class="pricing-price text-white">12500.00</span>
+                            <span class="pricing-period text-white">/ Мес.</span>
+                        </p>
+                    </div>
+                    <div class="pricing-table-content">
+                        <ul>
+                            <li><strong>30 Тренировок</strong></li>
+                            <li><strong>Безлимитное посещение</strong></li>
+                            <li><strong>Бассейн</strong></li>
+                            <li><strong>Солярий</strong></li>
+                            <li><strong>Круглосуточная поддержка</strong></li>
+                        </ul>
+                        <div class="pricing-table-button">
+                        </div><!-- / pricing-table-button -->
+                    </div><!-- / pricing-table-content -->
+                </div><!-- / pricing-table -->
+            </div><!-- / column -->
+        </div><!-- / row -->
+    </div><!-- / container -->
+</section>

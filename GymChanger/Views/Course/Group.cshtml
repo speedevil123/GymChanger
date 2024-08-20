@@ -28,25 +28,17 @@
     color: #555;
 }
 </style>
-
-<div class="container">
-    <div class="row text-center text-white">
-        <div class="col-lg-8 mx-auto">
-            <h1 class="display-4">Группа</h1>
-        </div>
-    </div>
-</div><!-- End -->
-
-@foreach(var item in Model.Users)
-{
+<h5 style="color: black; text-align: center; margin-bottom: 15px">Группа курса</h5>
     <div class="container">
         <div class="row text-center">
-            <div class="col-xl-3 col-sm-6 mb-5" style="border-color:skyblue; border-style:solid; ">
-                <div class="bg-white  py-5 px-4">
+            @foreach(var item in Model.Users)
+            {
+            <div class="col-xl-2 col-sm-6 m-1" style="border-color:skyblue; border-style:solid; ">
+                <div class="bg-white  py-3 px-2">
                     <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/user.png" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                     <h5 class="mb-0">@item.Surname @item.Name</h5><span class="small text-uppercase text-muted">@item.BirthDay</span>
                 </div>
             </div>
+            }
         </div>
     </div>
-}

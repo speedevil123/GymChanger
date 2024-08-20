@@ -33,7 +33,7 @@ namespace GymChanger.Data
                         Surname = "Сюткин",
                         MiddleName = "Юрьевич",
                         UserName = "speedevil",
-                        BirthDay = "10.02.2004",
+                        BirthDay = "2004-02-10",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
                     };
@@ -51,7 +51,7 @@ namespace GymChanger.Data
                         Name = "Иван",
                         Surname = "Иванов",
                         MiddleName = "Иванович",
-                        BirthDay = "25.03.1998",
+                        BirthDay = "1998-03-15",
                         UserName = "app-user1",
                         Email = appUserEmail,
                         EmailConfirmed = true,
@@ -70,7 +70,7 @@ namespace GymChanger.Data
                         Name = "Алексей",
                         Surname = "Крюк",
                         MiddleName = "Евгеньевич",
-                        BirthDay = "09.10.2003",
+                        BirthDay = "2003-10-09",
                         UserName = "trainer-user1",
                         Email = trainerUserEmail,
                         EmailConfirmed = true,
@@ -89,7 +89,7 @@ namespace GymChanger.Data
                         Name = "Дмитрий",
                         Surname = "Голубочкин",
                         MiddleName = "Владимирович",
-                        BirthDay = "09.02.1995",
+                        BirthDay = "1995-02-09",
                         UserName = "trainer-user2",
                         Email = trainerUser2Email,
                         EmailConfirmed = true,
@@ -119,9 +119,10 @@ namespace GymChanger.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
 
-                if (context.Courses.Any())
+                if (context!.Courses.Any() && context.Users.Any())
                 {
                     context.Courses.RemoveRange(context.Courses);
+                    context.Users.RemoveRange(context.Users);
                     context.SaveChanges();
                 }
                 else

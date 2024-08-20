@@ -34,6 +34,11 @@ if (args.Length == 1 && args[0].ToLower() == "deletetable")
 {
     Delete.DeleteTable(app);
 }
+
+if (args.Length == 1 && args[0].ToLower() == "cleartable")
+{
+    Delete.ClearTable(app);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
